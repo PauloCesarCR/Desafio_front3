@@ -34,7 +34,7 @@ export default function Login() {
         setItem('nome', data.nome)
         setErro('')
         navigate('/home')
-        toast.notifySucess("Bem Vindo")
+        toast.notifySucess(`Bem Vindo ${data.nome}`)
       }
   }
 
