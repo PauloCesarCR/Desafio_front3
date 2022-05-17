@@ -22,17 +22,18 @@ export default function Cadastrar() {
   }
 
   async function cadastrarUsuario() {
-    try {
-       await requisicoes.post('usuarios', {
+    
+    const result = await requisicoes.post('usuarios', {
         nome: formCadastro.nome,
         email: formCadastro.email,
         senha: formCadastro.senha,
       })
-      setErroCadastro('')
-      navigate('/login')
-    } catch (error) {
-      setErroCadastro(error.response.data)
-    }
+      
+      if (result){
+        setErroCadastro('')
+        navigate('/login')
+      }
+  
   }
 
   async function handleSubmitCadastro(e) {
