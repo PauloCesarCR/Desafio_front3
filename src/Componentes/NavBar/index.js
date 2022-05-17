@@ -9,6 +9,7 @@ import useGlobal from '../../hooks/useGlobal'
 import useRequisicoes from '../../hooks/useRequisicoes'
 import headerConfig from '../../utils/headerConfig'
 import { getItem, clear } from '../../services/storage'
+import toast from '../../utils/toast'
 
 export default function NavBar({ deslogar }) {
   const nome = getItem('nome')
@@ -36,6 +37,7 @@ export default function NavBar({ deslogar }) {
 
   function deslogar() {
     clear()
+    toast.notifySucess("Até logo")
     navigate('/login')
   }
 

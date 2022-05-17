@@ -94,7 +94,7 @@ export default function ModalRegistro ({setRegAberto,trocarValorInput,form,setFo
             onChange={trocarValorInput}
             name='data'
             value={form.data}
-            type='text'
+            type='date'
             />
         </label>
 

@@ -1,5 +1,6 @@
 import NavBar from '../../Componentes/NavBar'
 import './style.css'
+import 'react-toastify/dist/ReactToastify.min.css'
 import Transacoes from '../../Componentes/TransacoesDoUsuario'
 import ModalRegistro from '../../Componentes/ModalRegistro'
 import { useEffect, useState } from 'react'
@@ -12,7 +13,7 @@ import useRequisicoes from '../../hooks/useRequisicoes'
 import fracionarDigitos from '../../hooks/usefracionarDigitos'
 import headerConfig from '../../utils/headerConfig'
 import { getItem } from '../../services/storage'
-
+import toast from '../../utils/toast'
 function Home() {
   const requisicoes = useRequisicoes()
   const {editPerfil} = useGlobal()
@@ -31,7 +32,6 @@ function Home() {
   
   async function saldo() {
   
-    try {
       const data = await requisicoes.get('transacao/extrato',config)
       if (!data){
         setExtrato({ entrada: 0, saida: 0, saldo: 0 })
@@ -46,9 +46,7 @@ function Home() {
       const saldoEmPT = fracionarDigitos(saldo)
 
       setExtrato({ entrada: entrada, saida: saida, saldo: saldoEmPT })
-    } catch (error) {
-      console.log(error)
-    }
+  
   }
   async function transacoes() {
     try {
@@ -91,12 +89,10 @@ function Home() {
     setQualModal('Editar Registro')
   }
   async function editarTransacao() {
-
-      if(categoriaFiltrada.length === 0){
-        return;
+  
+      if (!form.valor || !categoriaFiltrada.id || !form.data  || !form.descricao || !tipo){
+        return toast.notifyError('Todos os campos são obrigatórios')
       }
-
-    try {
       const atualizarTransacao = {
         valor: form.valor,
         categoria_id: categoriaFiltrada.id,
@@ -104,17 +100,16 @@ function Home() {
         descricao: form.descricao,
         tipo: tipo,
       }
-      await requisicoes.put(`transacao/${transitionID}`, atualizarTransacao, config)
+      const data = await requisicoes.put(`transacao/${transitionID}`, atualizarTransacao, config)
+      console.log(data)
       setForm({ valor: '', data: ' ', descricao: ' ' })
       setRegAberto(false)
+      toast.notifySucess('Transação editada com sucesso')
       saldo()
       transacoes()
-    } catch (error) {
-      console.log(error)
-    }
-  }
+    } 
+  
   async function getCategorias() {
-    try {
       const data = await requisicoes.get('categoria',config)
 
       const opcoes = data.map((categoria) => ({
@@ -123,8 +118,8 @@ function Home() {
       }))
 
       setCategorias({ options: opcoes })
-    } catch (error) {}
-  }
+    } 
+
   async function trocarValorInput(e) {
     setForm({ ...form, [e.target.name]: e.target.value })
   }
@@ -140,8 +135,7 @@ function Home() {
     }
   }
   async function adicionarRegistro() {
-    
-    try {
+  
       if (!form.valor || !form.data || !form.descricao) {
         return setErroRegistro('Todos os campos são obrigatórios')
       }
@@ -156,17 +150,17 @@ function Home() {
         descricao: form.descricao,
         tipo: tipo,
       }
-      await requisicoes.post('transacao', newTransacao, config)
+      const resultado = await requisicoes.post('transacao', newTransacao, config)
+      console.log(resultado)
+      if (resultado){
+        transacoes()
+        saldo()
+        toast.notifySucess('Transação adicionada com sucesso')
+        setForm({ valor: '', data: ' ', descricao: ' ' })
+        setRegAberto(false)
+      }
+    } 
 
-      transacoes()
-      saldo()
-      setErroRegistro('')
-      setForm({ valor: '', data: ' ', descricao: ' ' })
-      setRegAberto(false)
-    } catch (error) {
-      setErroRegistro(error.response.data.mensagem)
-    }
-  }
   useEffect(()=>{
     filtrarCategoria()
   })

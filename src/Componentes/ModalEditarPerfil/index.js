@@ -7,6 +7,7 @@ import headerConfig from '../../utils/headerConfig'
 import trocarTipoInput from '../../utils/trocarTipoInput'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
+import toast from '../../utils/toast'
 import { useState } from 'react'
 function ModalEditarPerfil() {
   const token = getItem('token')
@@ -21,24 +22,26 @@ function ModalEditarPerfil() {
   const requisicoes = useRequisicoes()
 
   async function atualizarUsuario() {
-    try {
+
+      if (!formPerfil.nome || !formPerfil.email || !formPerfil.senha || !formPerfil.confirmSenha){
+        return toast.notifyError('Todos os campos são obrigatórios')
+      }
       if (formPerfil.senha !== formPerfil.confirmSenha) {
-        return setErroPerfil(
-          'A senha de confirmação e a senha precisam ser idênticas.',
-        )
+        return toast.notifyError('As senhas precisam ser idênticas')
       }
       const formPerfilAtualizar = {
         nome: formPerfil.nome,
         email: formPerfil.email,
         senha: formPerfil.senha,
       }
-      await requisicoes.put('usuario', formPerfilAtualizar, config)
-      setItem('nome', formPerfil.nome)
-      setEditPerfil(false)
-      setFormPerfil({ nome: '', email: '', senha: '', confirmSenha: '' })
-    } catch (error) {
-      setErroPerfil(error.response.data.mensagem)
-    }
+       await requisicoes.put('usuario', formPerfilAtualizar, config)
+        
+        setItem('nome', formPerfil.nome)
+        setFormPerfil({ nome: '', email: '', senha: '', confirmSenha: '' })
+        setEditPerfil(false)
+        toast.notifySucess('Perfil atualizado com sucesso')
+      
+    
   }
   async function handleSubmitAtualizarUsuario(e) {
     e.preventDefault()

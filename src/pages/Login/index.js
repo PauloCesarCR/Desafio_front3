@@ -7,8 +7,12 @@ import { useNavigate } from 'react-router-dom'
 import trocarTipoInput from '../../utils/trocarTipoInput'
 import useRequisicoes from '../../hooks/useRequisicoes'
 import { getItem, setItem } from '../../services/storage';
+import toast from '../../utils/toast'
+
 
 export default function Login() {
+
+
   const navigate = useNavigate()
   const requisicoes = useRequisicoes()
   const [formLogin, setFormLogin] = useState({ email: '', senha: '' })
@@ -18,21 +22,20 @@ export default function Login() {
   async function trocarValorInput(e) {
     setFormLogin({ ...formLogin, [e.target.name]: e.target.value })
   }
-  
+
   async function fazerLogin() {
     if (!formLogin.email || !formLogin.senha) {
       return
     }
-
-    try {
       const data= await requisicoes.post('login',formLogin)
-      setItem('token', data.token)
-      setItem('nome', data.nome)
-      setErro('')
-      navigate('/home')
-    } catch (error) {
-      setErro(error.response.data.mensagem)
-    }
+
+      if(data){
+        setItem('token', data.token)
+        setItem('nome', data.nome)
+        setErro('')
+        navigate('/home')
+        toast.notifySucess("Bem Vindo")
+      }
   }
 
   async function handleSubmitLogin(e) {
@@ -44,6 +47,7 @@ export default function Login() {
     const token = getItem('token')
     if (token) {
       navigate('/home')
+      
     }
   })
 

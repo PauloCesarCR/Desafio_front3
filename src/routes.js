@@ -10,6 +10,7 @@ import Login from './pages/Login'
 import Cadastrar from './pages/cadastrar'
 import { getItem } from './services/storage'
 import { GlobalProvider } from './context/GlobalContext'
+import { ToastContainer } from 'react-toastify'
 
 function ProtegerRotas({ redirectTo }) {
   const estaAutenticado = getItem('token')
@@ -19,7 +20,8 @@ function ProtegerRotas({ redirectTo }) {
 
 function MainRoutes() {
   return (
-      <GlobalProvider>
+          <GlobalProvider>
+            <ToastContainer />
         <Routes>
         <Route path="/cadastre-se" element={<Cadastrar />} />
         <Route path="/login" element={<Login />} />
@@ -29,6 +31,7 @@ function MainRoutes() {
         </Route>
         </Routes>
       </GlobalProvider>
+     
   )
 }
 export default MainRoutes

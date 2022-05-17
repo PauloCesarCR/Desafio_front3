@@ -5,7 +5,7 @@ import { useState, useEffect } from 'react'
 import { getItem } from '../../services/storage'
 import useRequisicoes from '../../hooks/useRequisicoes'
 import { useNavigate } from 'react-router-dom'
-
+import toast from '../../utils/toast'
 export default function Cadastrar() {
   const navigate = useNavigate()
   const requisicoes = useRequisicoes()
@@ -15,23 +15,25 @@ export default function Cadastrar() {
     senha: '',
     confirmSenha: '',
   })
-  const [erroCadastro, setErroCadastro] = useState('')
 
   async function trocarValorInputCadastro(e) {
     setFormCadastro({ ...formCadastro, [e.target.name]: e.target.value })
   }
 
   async function cadastrarUsuario() {
-    
-    const result = await requisicoes.post('usuarios', {
+
+    if (formCadastro.senha !== formCadastro.confirmSenha){
+      return toast.notifyError('As senhas precisam ser idênticas')
+    }
+    const data = await requisicoes.post('usuarios', {
         nome: formCadastro.nome,
         email: formCadastro.email,
         senha: formCadastro.senha,
       })
-      
-      if (result){
-        setErroCadastro('')
+
+      if (data){
         navigate('/login')
+        toast.notifySucess('Cadastrado com Sucesso')
       }
   
   }
@@ -96,7 +98,6 @@ export default function Cadastrar() {
               type="password"
             />
           </label>
-          <span className="erro">{erroCadastro ? erroCadastro : ''}</span>
           <button className="btn-entrar">Cadastre-se</button>
           <Link to="/login">Já tem cadastro? Clique aqui!</Link>
         </form>
