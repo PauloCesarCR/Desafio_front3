@@ -13,7 +13,7 @@ function useRequisicoes(){
               }
               return data;
         } catch (error) {
-                toast.messageError(error.message)
+                toast.messageError(error.response.data.mensagem)
         }
     }
 
@@ -27,7 +27,7 @@ function useRequisicoes(){
              }
              return data;
         } catch (error) {
-          toast.messageError(error.message)
+          toast.messageError(error.response.data.mensagem)
         }
     }
 
@@ -41,7 +41,7 @@ function useRequisicoes(){
              }
              return data;
         } catch (error) {
-          toast.messageError(error.message)
+          toast.messageError(error.response.data.mensagem)
         }
     }
 
@@ -55,7 +55,7 @@ function useRequisicoes(){
            }
            return data;
         } catch (error) {
-            console.log(error.message)
+            console.log(error.response.data.mensagem)
         }
       }
 
@@ -68,7 +68,7 @@ function useRequisicoes(){
            }
            return data;
         } catch (error) {
-          toast.messageError(error.message)
+          toast.messageError(error.response.data.mensagem)
         }
       }
 
