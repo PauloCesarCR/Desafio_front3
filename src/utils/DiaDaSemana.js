@@ -1,0 +1,1 @@
+ export const DiaDaSemana = ["Domingo","Segunda","Terça","Quarta","Quinta","Sexta","Sábado"]

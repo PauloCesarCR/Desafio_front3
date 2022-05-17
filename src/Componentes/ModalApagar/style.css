@@ -1,0 +1,52 @@
+.modal {
+    height: 56px;
+    width: 131px;
+
+    border-radius: 4px;
+    background: #E4F2FD;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.btn-sim {
+    height: 15px;
+    width: 37px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    color: white;
+    background: #3A9FF1;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+.btn-modal {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    gap: 5px;
+    margin-top: 4px;
+}
+
+.btn-nao {
+    height: 15px;
+    width: 37px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    padding: 5px 10px;
+
+    color: white;
+    background: #FF576B;
+    border-radius: 4px;
+    cursor: pointer;
+}

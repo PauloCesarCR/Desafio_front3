@@ -1,0 +1,97 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+
+nav {
+    margin-bottom: 30px;
+}
+
+.content-page {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+    height: 700px;
+    min-width: 100%;
+
+    position: absolute;
+    top: 100px;
+
+    border-radius: 60px 60px 0px 0px;
+    background-color: white;
+}
+
+.conteudo-home {
+    display: flex;
+    height: 58px;
+}
+
+.resumo div {
+    display: flex;
+    gap: 30px;
+    margin-left: 33px;
+}
+
+.transacoes {
+    height: 500px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: relative;
+}
+
+
+
+.adicionarRegistro {
+    all: unset;
+    height: 46px;
+    width: 236px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-left: 34px;
+    margin-top: 16px;
+
+    position: absolute;
+
+    color: white;
+    background: #7978D9;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+@media (max-width: 800px) {
+    .conteudo-home {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .transacoes {
+        position: relative;
+        width: 100%;
+    }
+
+    .transacao .btns {
+        display: none;
+    }
+
+    .listaDindin {
+
+        width: 664px;
+        gap: 25px;
+    }
+
+    .listaDindin span {
+        margin-left: 0px;
+    }
+
+}

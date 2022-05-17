@@ -1,0 +1,54 @@
+nav {
+    height: 184px;
+    width: 100%;
+    
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    
+    color: white;
+    background: linear-gradient(90.23deg, #05EDE3 0.02%, #645FFB 99.63%);
+}
+ h2 {
+    height: 43px;
+    width: 116px;
+    margin: 0px;
+    
+    font-family: Rubik;
+    font-size: 36px;
+    font-weight: 700;
+    line-height: 43px;
+    text-align: center; 
+    letter-spacing: 0em;
+}
+.nav-bar-icon{
+    display: flex;
+    align-items: center;
+
+    margin-left: 80px;
+    margin-bottom: 50px;
+}
+nav .poligono {
+    padding: 5px;
+    border-radius: 100%;
+}
+.poligonoDois {
+    position: absolute;
+}
+.nav-bar-profile {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+
+    margin-right: 80px;
+    margin-bottom: 50px;
+}
+.boneco {
+    position: absolute;
+
+    margin: 0 0 1px 6px;
+    cursor:pointer
+}
+.deslogar {
+    cursor: pointer;
+}

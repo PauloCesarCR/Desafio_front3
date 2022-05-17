@@ -1,0 +1,129 @@
+.transacao {
+    width: 864px;
+
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+
+    margin-bottom: 1px solid black;
+    padding: 25px;
+
+    background: white;
+    border-bottom: 1px solid #E0E0E0;
+
+}
+.transacao span {
+    text-transform: capitalize;
+}
+
+.btns {
+    display: flex;
+    gap: 10px;
+    position: absolute;
+    right: 20px;
+}
+
+.editar {
+    cursor: pointer;
+}
+
+.excluir {
+    cursor: pointer;
+}
+
+.modalApagar {
+    display: flex;
+
+    position: absolute;
+    right: 65px;
+    bottom: 0;
+    top: 100px;
+}
+
+.orange {
+    color: #FA8C10;
+}
+
+.purple {
+    color: #7B61FF;
+
+}
+
+.dataFormatada,
+.dia,
+.descricao,
+.categoria,
+.valor {
+    width: 100px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: absolute;
+    text-align: center;
+}
+
+.dataFormatada {
+    position: absolute;
+    left: 30px;
+}
+
+.dia {
+    position: absolute;
+    left: 165px;
+}
+
+.descricao {
+    position: relative;
+    left: 15px;
+}
+
+.categoria {
+    position: relative;
+    left: 80px;
+}
+
+.valor {
+    position: absolute;
+    right: 110px;
+}
+
+@media (max-width:768px) {
+    .transacao {
+        width: 664px;
+
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        justify-content: center;
+
+        margin-bottom: 1px solid black;
+        padding: 25px;
+
+        background: white;
+        border-bottom: 1px solid #E0E0E0;
+    }
+
+    .dataFormatada {
+        left: 0px;
+    }
+
+    .dia {
+        left: 100px;
+    }
+
+    .descricao {
+        right: 80px;
+    }
+
+    .categoria {
+        left: 30px;
+    }
+
+    .valor {
+        position: absolute;
+        right: 70px;
+    }
+
+
+}

@@ -1,0 +1,136 @@
+.container-form {
+  position: fixed;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  left: 0;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  background: #3D3D3D7A;
+}
+form {
+    height: 879px;
+    width: 611px;
+
+    display: flex;
+    flex-direction: column;
+
+    position: absolute;
+
+    background-color: white;
+    border-radius: 20px;
+
+}
+.div-fechar {
+
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+
+    margin-top: 62px;
+}
+.btn-fechar {
+    cursor: pointer;
+}
+
+
+.btns-form {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-top: 62px;
+}
+.btn-entrada,.btn-entrada:hover {
+ background: #71adde;
+}
+.btn-saida,.btn-saida:hover {
+    background: #ea7986;
+}
+
+
+.btns-form .btn-desativado {
+    background: #bebaba;
+    color: white;
+}
+
+.btns-form button {
+
+    height: 60px;
+    width: 245px;
+
+    margin-bottom: 38px;
+    margin-right: 3px;
+    color: white;
+    border: none;
+    border-radius: 10px 10px 10px 10px; 
+    cursor: pointer;
+}
+
+label {
+    position: relative;
+    left: 62px;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+
+    text-align: left;
+}
+label span {
+    margin-bottom: 8px;
+
+    font-family: Rubik;
+    font-size: 24px;
+    font-weight: 500;
+    line-height: 28px;
+    letter-spacing: 0px;
+    text-align: left;
+}
+
+label input {
+    height: 60.48px;
+    width: 485px;
+
+    padding: 10px;
+    margin-bottom: 20px;
+
+    border: 1px solid #555555;
+    border-radius: 5px;
+
+}
+select {
+    height: 60.48px;
+    width: 485px;
+
+    margin-bottom: 20px;
+
+    border-radius: 5px;
+    background-color: white;
+}
+.btn-confirmar {
+    all: unset;
+
+    height: 46px;
+    width: 236px;
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    
+    margin-bottom: 30px;
+    margin-top: 20px;
+
+    color:  white;
+    background: #7978D9;
+    border-radius: 5px;
+    cursor: pointer;
+}
+.div-btn-confirmar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}

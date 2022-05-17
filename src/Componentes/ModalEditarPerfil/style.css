@@ -1,0 +1,23 @@
+.editar-perfil {
+    
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    
+    margin-top: 62px;
+    margin-bottom: 50px;
+}
+.erro {
+
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.label-senha {
+    position: relative;
+}
+.icon-perfil {
+    position: absolute;
+    right: 140px;
+    top: 53px;
+}
