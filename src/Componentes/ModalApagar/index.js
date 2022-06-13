@@ -1,12 +1,10 @@
 import './style.css'
 import useRequisicoes from '../../hooks/useRequisicoes'
-import headerConfig from '../../utils/headerConfig'
 import { getItem } from '../../services/storage'
 import toast from '../../utils/toast'
 
 export default function ModalApagaritem({transacaoID,saldo,transacoes}) {
   const token = getItem('token')
-  const config = headerConfig(token)
   const requisicoes = useRequisicoes()
 
     function fecharModal(){
@@ -17,7 +15,7 @@ export default function ModalApagaritem({transacaoID,saldo,transacoes}) {
       }
 
     async function apagarTransacao() {
-         const result = await requisicoes.del('transacao',transacaoID,config )
+         const result = await requisicoes.del('transacao',transacaoID)
           transacoes()
           saldo()
           toast.notifySucess('Transação deletada com sucesso')

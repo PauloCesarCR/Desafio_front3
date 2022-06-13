@@ -11,8 +11,6 @@ import { format, parseISO} from 'date-fns'
 import useGlobal from '../../hooks/useGlobal'
 import useRequisicoes from '../../hooks/useRequisicoes'
 import fracionarDigitos from '../../hooks/usefracionarDigitos'
-import headerConfig from '../../utils/headerConfig'
-import { getItem } from '../../services/storage'
 import toast from '../../utils/toast'
 function Home() {
   const requisicoes = useRequisicoes()
@@ -27,12 +25,10 @@ function Home() {
   const [transacoesOk, setTransacoes] = useState([])
   const [extrato, setExtrato] = useState({})
   const [categoriaFiltrada, setCategoriaFiltrada] = useState([])
-  const token = getItem('token')
-  const config = headerConfig(token)
   
   async function saldo() {
   
-      const data = await requisicoes.get('transacao/extrato',config)
+      const data = await requisicoes.get('transacao/extrato')
       if (!data){
         setExtrato({ entrada: 0, saida: 0, saldo: 0 })
         return;
@@ -50,7 +46,7 @@ function Home() {
   }
   async function transacoes() {
     try {
-      const transacoes = await requisicoes.get('transacao',config)
+      const transacoes = await requisicoes.get('transacao')
       setTransacoes(transacoes)
     } catch (error) {}
   }
@@ -74,7 +70,7 @@ function Home() {
   }
   async function EditarTransacaoID(transacaoID) {
 
-    const transacao = await requisicoes.getUm('transacao', transacaoID,config)
+    const transacao = await requisicoes.getUm('transacao', transacaoID)
 
     let dataFormatada = parseISO(transacao.data)
     dataFormatada = format(dataFormatada, 'dd/MM/yyyy')
@@ -100,7 +96,7 @@ function Home() {
         descricao: form.descricao,
         tipo: tipo,
       }
-      const data = await requisicoes.put(`transacao/${transitionID}`, atualizarTransacao, config)
+      const data = await requisicoes.put(`transacao/${transitionID}`, atualizarTransacao)
       console.log(data)
       setForm({ valor: '', data: ' ', descricao: ' ' })
       setRegAberto(false)
@@ -110,7 +106,7 @@ function Home() {
     } 
   
   async function getCategorias() {
-      const data = await requisicoes.get('categoria',config)
+      const data = await requisicoes.get('categoria')
 
       const opcoes = data.map((categoria) => ({
         id: categoria.id,
@@ -150,7 +146,7 @@ function Home() {
         descricao: form.descricao,
         tipo: tipo,
       }
-      const resultado = await requisicoes.post('transacao', newTransacao, config)
+      const resultado = await requisicoes.post('transacao', newTransacao)
       console.log(resultado)
       if (resultado){
         transacoes()

@@ -1,10 +1,9 @@
-import axios  from "axios";
+import axios from 'axios';
+import { getItem } from '../services/storage'
+const token = getItem('token')
 
 export default axios.create({
-   
     baseURL: 'https://api-dindincubos.herokuapp.com',
-    timeout: 10000,
-    headers: {'Content-Type': 'application/json'}
-
+    headers: { 'Content-Type': 'application/json', 
+    'Authorization': `Bearer ${token}` }
 });
-

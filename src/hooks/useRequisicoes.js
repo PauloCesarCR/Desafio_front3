@@ -3,9 +3,9 @@ import api from '../services/api';
 
 function useRequisicoes(){
   
-    async function get(rota,config){
+    async function get(rota){
         try {
-            const response = await api.get(`/${rota}`, config)
+            const response = await api.get(`/${rota}`)
             const {data} = response
 
             if (response.status > 205) {
@@ -18,9 +18,9 @@ function useRequisicoes(){
     }
 
 
-    async function getUm(rota,id,config){
+    async function getUm(rota,id){
         try {
-            const response = await api.get(`/${rota}/${id}`, config)
+            const response = await api.get(`/${rota}/${id}`)
             const {data} = response   
             if (response.status > 205) {
               throw new Error(data)    
@@ -31,10 +31,10 @@ function useRequisicoes(){
         }
     }
 
-    async function post(rota,body,config){
+    async function post(rota,body){
         try {
           
-            const response = await api.post(`/${rota}`,body, config)    
+            const response = await api.post(`/${rota}`,body)    
             const {data} = response  
         
             if (response.status > 205) {
@@ -47,9 +47,9 @@ function useRequisicoes(){
         }
     }
 
-    async function del(rota,id,config) {
+    async function del(rota,id) {
         try {
-          const response = await api.delete(`/${rota}/${id}`, config) 
+          const response = await api.delete(`/${rota}/${id}`) 
 
           const {data} = response   
           if (response.status > 205) {
@@ -61,9 +61,9 @@ function useRequisicoes(){
         }
       }
 
-      async function put(rota,body,config) {
+      async function put(rota,body) {
         try {
-          const response = await api.put(`/${rota}`,body, config)
+          const response = await api.put(`/${rota}`,body)
           const {data} = response   
           if (response.status > 205) {
             throw new Error(data)    

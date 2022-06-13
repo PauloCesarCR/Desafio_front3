@@ -7,23 +7,20 @@ import iconeSair from '../../assets/iconeSair.png'
 import boneco from '../../assets/boneco.png'
 import useGlobal from '../../hooks/useGlobal'
 import useRequisicoes from '../../hooks/useRequisicoes'
-import headerConfig from '../../utils/headerConfig'
 import { getItem, clear } from '../../services/storage'
 import toast from '../../utils/toast'
 
 export default function NavBar({ deslogar }) {
+  
   const nome = getItem('nome')
-  const token = getItem('token')
-
   const { setEditPerfil, setFormPerfil, setErroPerfil } = useGlobal()
   const navigate = useNavigate()
-  const config = headerConfig(token)
   const requisicoes = useRequisicoes()
- 
+
   async function abrirModalPerfil() {
     setEditPerfil(true)
     try {
-      const usuario = await requisicoes.get('usuario', config)
+      const usuario = await requisicoes.get('usuario')
       setFormPerfil({
         nome: usuario.nome,
         email: usuario.email,

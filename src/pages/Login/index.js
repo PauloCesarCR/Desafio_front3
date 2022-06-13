@@ -12,7 +12,6 @@ import toast from '../../utils/toast'
 
 export default function Login() {
 
-
   const navigate = useNavigate()
   const requisicoes = useRequisicoes()
   const [formLogin, setFormLogin] = useState({ email: '', senha: '' })

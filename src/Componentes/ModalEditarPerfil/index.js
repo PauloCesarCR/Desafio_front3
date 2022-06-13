@@ -3,15 +3,12 @@ import fechar from '../../assets/fechar.png'
 import useRequisicoes from '../../hooks/useRequisicoes'
 import useGlobal from '../../hooks/useGlobal'
 import { setItem,getItem } from '../../services/storage'
-import headerConfig from '../../utils/headerConfig'
 import trocarTipoInput from '../../utils/trocarTipoInput'
 import VisibilityIcon from '@mui/icons-material/Visibility'
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff'
 import toast from '../../utils/toast'
 import { useState } from 'react'
 function ModalEditarPerfil() {
-  const token = getItem('token')
-  const config = headerConfig(token)
   const {
     formPerfil,
     setFormPerfil,
@@ -34,7 +31,7 @@ function ModalEditarPerfil() {
         email: formPerfil.email,
         senha: formPerfil.senha,
       }
-       await requisicoes.put('usuario', formPerfilAtualizar, config)
+       await requisicoes.put('usuario', formPerfilAtualizar)
         
         setItem('nome', formPerfil.nome)
         setFormPerfil({ nome: '', email: '', senha: '', confirmSenha: '' })
