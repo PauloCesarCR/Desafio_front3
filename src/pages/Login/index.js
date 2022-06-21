@@ -24,7 +24,7 @@ export default function Login() {
 
   async function fazerLogin() {
     if (!formLogin.email || !formLogin.senha) {
-      return
+      return toast.notifyError('Todos os campos são obrigatórios!')
     }
       const data= await requisicoes.post('login',formLogin)
 

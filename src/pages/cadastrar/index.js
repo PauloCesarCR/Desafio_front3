@@ -22,6 +22,9 @@ export default function Cadastrar() {
 
   async function cadastrarUsuario() {
 
+    if (!formCadastro.nome || !formCadastro.email || !formCadastro.senha || !formCadastro.confirmSenha){
+      return toast.notifyError('Todos os campos são obrigatórios!')
+    }
     if (formCadastro.senha !== formCadastro.confirmSenha){
       return toast.notifyError('As senhas precisam ser idênticas')
     }
